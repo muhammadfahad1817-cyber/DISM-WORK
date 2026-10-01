@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+
+    <employee>
+        <id>101</id>
+        <name>Ahmed</name>
+        <email>ahmed@gmail.com</email>
+        <age>18</age>
+        <department>IT</department>
+    </employee>
+    <employee>
+        <id>102</id>
+        <name>Ali</name>
+        <email>ali@gmail.com</email>
+        <age>22</age>
+        <department>HR</department>
+    </employee>
+
+</employees>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:c="https://customer.com" xmlns:o="https://order.com" xmlns:p="https://payments.com">
+
+<c:customer>
+    <c:id>101</c:id>
+    <c:name>ali</c:name>
+    <c:email>ali@gmail.com</c:email>
+</c:customer>
+
+<o:order>
+    <o:id>101</o:id>
+    <o:order-date>13-May-2024</o:order-date>
+    <o:amount>15000</o:amount>
+</o:order>
+
+
+<p:payments>
+    <p:id>101</p:id>
+    <p:paid-via>Credit card</p:paid-via>
+    <p:day>Thursday</p:day>
+</p:payments>
+
+</root>

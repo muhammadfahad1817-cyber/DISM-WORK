@@ -1,0 +1,9 @@
+CREATE DATABASE laraveldb;
+USE laraveldb;
+CREATE TABLE Users(
+    uid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    age INT,
+    phone VARCHAR(255),
+    email VARCHAR(255)
+    );

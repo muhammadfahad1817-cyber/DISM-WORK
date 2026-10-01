@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE employees [
+    <!ELEMENT employees (employee)+>
+    <!ELEMENT employee (id, name, dept)>
+    <!ELEMENT id (#PCDATA)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT dept (#PCDATA)>
+]>
+<employees>
+    <employee>
+        <id>101</id>
+        <name>ali</name>
+        <dept>IT</dept>
+    </employee>
+     <employee>
+        <id>102</id>
+        <name>ahmed</name>
+        <dept>IT</dept>
+    </employee>
+</employees>

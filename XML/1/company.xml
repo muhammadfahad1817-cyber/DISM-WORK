@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:h="https://hr.com" xmlns:i="https://inventory.com">
+
+<h:employees>
+    <h:employee>
+        <h:id>101</h:id>
+        <h:name>Ali</h:name>
+    </h:employee>
+</h:employees>
+
+<h:items>
+    <h:item>
+        <h:id>101</h:id>
+        <h:name>Iphone</h:name>
+    </h:item>
+</h:items>
+
+
+</root>

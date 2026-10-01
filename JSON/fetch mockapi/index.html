@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+     <div id="facultyoutput"></div>
+
+    <div id="output"></div>
+
+
+   
+   
+
+    <script>
+       let container = document.getElementById("output")
+        fetch("https://69e6fc0368208c1debe81d11.mockapi.io/aptechdata/v1/Students")
+        .then(response => response.json())
+        .then(data => data.forEach(student=>{ container.innerHTML += `   <div style="border: 2px solid black; padding: 10px; margin: 10px; width: 200px; border-radius: 20px; display: inline-block;">
+
+
+        <h3>CNIC: ${student.cnic}</h3>
+        <p>ID: ${student.id}</p>
+        <p>Name: ${student.name}</p>
+        <p>Email: ${student.email}</p>
+        <p>Phone: ${student.phone}</p>
+        <p>Education: ${student.education}</p>
+    </div>`}))
+
+
+     let faculty = document.getElementById("facultyoutput")
+    fetch("https://69e6fc0368208c1debe81d11.mockapi.io/aptechdata/v1/Faculty")
+    .then(response => response.json())
+    .then(data => data.forEach(faculty=>{container.innerHTML += 
+        ` <div style="border: 2px solid black; padding: 10px; margin: 10px; width: 200px; border-radius: 20px; display: inline-block;">
+
+
+        
+        <h3>ID: ${faculty.id}</h3>
+        <p>Name: ${faculty.name}</p>
+        <p>Salary: ${faculty.salary}</p>
+        <p>Education: ${faculty.education}</p>
+    </div>`
+    }))
+    </script>
+</body>
+</html>

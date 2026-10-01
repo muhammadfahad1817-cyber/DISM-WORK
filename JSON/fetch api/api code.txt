@@ -1,0 +1,31 @@
+<script>
+
+fetch("api/endpoint")
+
+
+
+
+
+
+
+
+
+
+
+</Script>
+
+fetch = built in function
+fetch returns promise fulfil or not fulfil
+fetch(
+fulfil = data is fetched 
+not fulfil = error in fetching data)
+.then = executes when data is fetched 
+response (var) = store fetched JSON
+response.json() = converts JSON into JS object
+convert.json()(
+fulfil = JSON valid
+not fulfil = JSON invalid missing corner
+.then = executes when jSON is valid & converted into JS-Object
+.data (JS-Object) = variable that stores converted JS-Object
+data = foreach [array]
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<daraz xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="daraz.xsd">
+
+    <products>
+        <product>1000</product>
+        <id>1</id>
+        <name>I phone</name>
+        <description>Phone</description>
+        <price>1000000</price>
+    </products>
+
+
+    <customers>
+        <customer>
+            <id>2</id>
+            <name>Haris</name>
+            <email>haris123@gmail.com</email>
+            <address>House no 213</address>
+        </customer>
+        
+    </customers>
+</daraz>

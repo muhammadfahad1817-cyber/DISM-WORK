@@ -1,0 +1,24 @@
+USE aliexpressdb;
+
+CREATE TABLE categories(
+   category_id int PRIMARY KEY,
+    category_name varchar(100),
+    parent_id int);
+
+
+INSERT INTO categories
+VALUES
+(1,"Electronics",NULL),
+(2,"Accessories",NULL),
+(3,"Laptop",1),
+(4,"USB-C hub",2),
+(5,"Iphone 17",1);
+
+
+-- Self join
+SELECT
+c1.category_name AS category,
+c2.category_name AS parent
+FROM categories AS c1
+INNER JOIN categories AS c2
+ON c1.parent_id = c2.category_id;

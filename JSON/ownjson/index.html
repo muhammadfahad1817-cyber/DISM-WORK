@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <script>
+         let container = document.getElementById("output")
+     fetch("company.json")
+     .then(response => response.json())
+     .then(data => data.forEach(user => {
+    //    console.log(user.name)
+       container.innerHTML += `<div style="border: 2px solid black; margin: 10px; padding: 10px; width: 200px; display: inline-block;">
+    <h3>Name:${user.name}</h3>
+    <p>Username:${user.username}</p>
+    <p>Email:${user.email}</p>
+</div>`
+     }))
+    </script>
+</body>
+</html>

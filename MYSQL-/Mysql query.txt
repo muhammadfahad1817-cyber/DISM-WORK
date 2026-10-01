@@ -1,0 +1,615 @@
+CREATE DATABASE hblDb;
+
+CREATE TABLE employees ( 
+  id int PRIMARY KEY,
+  name varchar(50),
+  age int,
+  gender varchar(50),
+  designation varchar(50),
+  Salary int
+            );
+
+USE hblDb;
+
+INSERT INTO employees(id,name,age,gender,designation,salary)
+VALUES
+(1,"Ali",18,"Male","Software Engineer",80000);
+
+
+-- INSERT (use for commit mysql query)
+
+-- INSERT into all col
+INSERT INTO employees(id,name,age,gender,desination,salary)
+VALUES
+(2,"Ahmed",18,"Male","Software Engineer",70000);
+
+
+-- INSERT into specific col
+INSERT INTO employees(id,name,age,gender)
+VALUES
+(3,"Aliyan",18,"Male");
+
+
+for insert multiple rows
+
+INSERT INTO employees
+VALUES
+(4,"Ali raza",18,"Male","HR",50000),
+(5,"Atif",18,"Male","HR",65000),
+(6,"khanji",18,"Male","HR",67000);
+
+
+-- UPDATE
+UPDATE employees SET age = 19 WHERE id = 2;
+
+
+UPDATE employees 
+SET 
+age = 19, 
+designation = "HR"
+WHERE id = 3;
+
+
+
+UPDATE employees 
+SET designation = "Senior Soft. Engr"
+WHERE 
+designation = "Software Engineer"
+
+
+-- Delete
+DELETE from employees WHERE id = 3;
+
+
+-- Read all columns of table
+SELECT * FROM employees 
+
+
+
+-- read specific columns of table
+SELECT id, name FROM employees;
+
+
+-- reading employees in descending order -> name col
+SELECT * FROM  employees ORDER BY name DESC;
+
+
+-- read only 3 employees 
+SELECT * FROM employees LIMIT 3;
+SELECT * FROM employees LIMIT 1,3;
+
+
+-- show second highest salary person
+SELECT * FROM employees ORDER BY salary DESC LIMIT 1,1;
+
+
+-- use for not repeat any value
+SELECT DISTINCT designation FROM employees;
+
+
+
+-- use for show persons those salary are greater than 60000
+SELECT * FROM employees WHERE salary > 60000;
+
+
+
+-- Alter Table 
+-- Add col email
+ALTER TABLE employees ADD email VARCHAR(50);
+
+
+-- use for update data in new email column for specified person
+UPDATE employees SET email = "ali@gmail.com" WHERE id = 1;
+
+-- use for updating existing column datatype or value
+ALTER TABLE employees MODIFY COLUMN email VARCHAR(100);
+
+-- Delete an exisiting column 
+ALTER TABLE employees DROP COLUMN email;
+
+
+
+-- adding a column at particular location
+ALTER TABLE employees ADD COLUMN last_name VARCHAR(50) AFTER name;
+
+
+-- Delete whole table
+-- 	DROP TABLE employees;
+
+-- change col name
+ALTER TABLE employees CHANGE name first_name VARCHAR(50);
+
+
+-- change table name
+ALTER TABLE employees RENAME TO staff;
+
+
+
+
+CREATE DATABASE EcommerceDB;
+USE EcommerceDB;
+CREATE TABLE customers(
+    customer_id int PRIMARY KEY AUTO_INCREMENT,
+    customer_name VARCHAR(50) NOT NULL, 
+    customer_age int NOT NULL,
+    customer_address VARCHAR(500) NOT NULL,
+    customer_city VARCHAR(50) NOT NULL,
+    customer_phone_number VARCHAR(50) NOT NULL
+    )
+
+
+orders:-
+       Constraint FK-customers-order FOREIGN KEY (c-id)
+REFERENCES customers (customer-id);
+
+
+Syntax:-
+     constraint constraint-name foreign key (col-name) 
+     References table-name (PK-col-name)
+
+
+USE EcommerceDB;
+
+CREATE TABLE orders(
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_item VARCHAR(50) NOT NULL,
+    order_quantity INT NOT NULL,
+    price_of_each INT NOT NULL,
+    c_id INT,
+    CONSTRAINT FK_Customer_Order FOREIGN KEY (c_id) REFERENCES customers (customer_id)
+    );
+
+
+Entity:-
+     Entity table name
+
+
+PK:- 
+    unique and not null
+
+FK:- 
+    build relation between two tables
+
+
+
+
+
+-- CREATE DATABASE schooldb;
+USE schooldb;
+
+-- CREATE TABLE teachers (
+    -- id int PRIMARY KEY AUTO_INCREMENT,
+    -- name VARCHAR (100)
+   -- ) ;
+    
+    -- INSERT INTO teachers (name)
+    -- VALUES
+    -- ("Mr.Ali"),
+    -- ("Ms.Sara"),
+    -- ("Mr.Ahmed");
+
+
+ 
+    -- CREATE TABLE students(
+        -- id int PRIMARY KEY AUTO_INCREMENT,
+        -- name varchar(100),
+        -- teacher_id int,
+        -- CONSTRAINT FK_teachers_students FOREIGN KEY(teacher_id) REFERENCES teachers(id)
+        -- );
+
+
+
+INSERT INTO students (name,teacher_id)
+        VALUES
+        ("Ayesha",1),
+        ("Bilal",1),
+        ("Hamza ali mazari",2),
+        ("Fatima", Null);
+        
+
+JOIN:-
+    Combining two tables data
+
+
+
+Inner Join display common data
+
+
+ -- insert: join common data
+        SELECT students.name, teachers.name
+        FROM students
+        INNER JOIN teachers
+        ON students.teacher_id = teachers.id;
+
+
+use for giving name to specify name to verify teachers and students name
+
+   -- insert: join common data
+        SELECT students.name AS student_name,
+        teachers.name AS teacher_name
+        FROM students
+        INNER JOIN teachers
+        ON students.teacher_id = teachers.id;
+
+
+use for display Mr ali students only
+
+  -- insert: join common data
+        SELECT students.name AS student_name,
+        teachers.name AS teacher_name
+        FROM students
+        INNER JOIN teachers
+        ON students.teacher_id = teachers.id
+        WHERE teachers.name = "Mr.Ali";
+
+
+left join:-
+       left join display common data and all left data
+
+
+
+       -- insert: join common data
+        SELECT students.name AS student_name,
+        teachers.name AS teacher_name
+        FROM students
+        LEFT JOIN teachers
+        ON students.teacher_id = teachers.id
+        ;
+
+
+right join:-
+       right join display common data and all right data
+
+
+-- insert: join common data
+        SELECT students.name AS student_name,
+        teachers.name AS teacher_name
+        FROM students
+        RIGHT JOIN teachers
+        ON students.teacher_id = teachers.id
+        ;
+
+
+Union:-
+     display all data
+
+
+  SELECT students.name AS student_name,
+        teachers.name AS teacher_name
+        FROM students
+        RIGHT JOIN teachers
+        ON students.teacher_id = teachers.id
+        
+        UNION
+        
+        SELECT students.name AS student_name,
+        teachers.name AS teacher_name
+        FROM students
+        LEFT JOIN teachers
+        ON students.teacher_id = teachers.id;
+        
+
+
+
+CREATE DATABASE admins;
+use admins;
+CREATE TABLE student(
+id int PRIMARY KEY AUTO_INCREMENT,
+name varchar(20) NOT NULL,
+email varchar(20) UNIQUE,
+age int CHECK(age >=18)
+)
+
+
+INSERT INTO student (name,email,age)
+VALUES
+("ali","ali@gmail.com",22),
+("ahmed","ahmed@gmail.com",23),
+("hamza","hamza@gmail.com",20),
+("hassan","hassan@gmail.com",19),
+("saif","saif@gmail.com",18)
+
+
+UPDATE student SET name ="rehman dakait" WHERE id =2
+UPDATE student SET email ="rehman@gmail.com" WHERE id =2
+        
+CREATE TABLE course(
+cid int PRIMARY KEY AUTO_INCREMENT,
+cname varchar(20)
+);
+
+INSERT INTO course (cname)
+VALUES
+("html"),
+("Css");
+
+
+SELECT name,email,cname FROM student S INNER JOIN course C ON S.id=C.cid;
+
+
+Alias:- 
+     Temporary name
+
+
+CREATE DATABASE aliexpressdb;
+USE aliexpressdb;
+CREATE TABLE employees(
+    emp_id int PRIMARY KEY,
+    emp_name varchar(100),
+    manager_id int
+    );
+
+
+INSERT INTO employees
+VALUES
+(1,"Tariq",NULL),
+(2,"Ali",1),
+(3,"Ayesha",1),
+(4,"Sara",2),
+(5,"Yahya",3);
+
+
+
+-- Self join
+SELECT
+e1.emp_name AS employees,
+e2.emp_name AS manager
+FROM employees AS e1
+INNER JOIN employees AS e2
+ON e1.manager_id = e2.emp_id;
+
+
+
+
+USE aliexpressdb;
+
+CREATE TABLE categories(
+   category_id int PRIMARY KEY,
+    category_name varchar(100),
+    parent_id int);
+
+
+INSERT INTO categories
+VALUES
+(1,"Electronics",NULL),
+(2,"Accessories",NULL),
+(3,"Laptop",1),
+(4,"USB-C hub",2),
+(5,"Iphone 17",1);
+
+
+-- Self join
+SELECT
+c1.category_name AS category,
+c2.category_name AS parent
+FROM categories AS c1
+INNER JOIN categories AS c2
+ON c1.parent_id = c2.category_id;
+
+
+SQL -> reuse query ->
+
+Delimeter //
+create procedure sp_getallstudents()
+BEGIN
+Select * from Students;
+END //
+DELIMETER ;
+
+
+-- store procedure use
+-- call
+CALL sp_getallstudents();
+
+
+
+-- get all student name with teacher name
+-- inner join
+SELECT 
+students.name AS studentname,
+teachers.name AS teachername
+FROM students
+INNER JOIN teachers
+ON students.teacher_id = teachers.id;
+
+
+
+-- get all student name with teacher name
+-- inner join
+DELIMITER //
+CREATE PROCEDURE sp_getstudentbyteacher()
+BEGIN
+SELECT 
+students.name AS studentname,
+teachers.name AS teachername
+FROM students
+INNER JOIN teachers
+ON students.teacher_id = teachers.id;
+END //
+DELIMITER ;
+
+-- call
+CALL sp_getstudentbyteacher()
+
+
+-- get all students of Mr ali
+-- inner join
+SELECT 
+students.name AS studentname,
+teachers.name AS teachername
+FROM students
+INNER JOIN teachers
+ON students.teacher_id = teachers.id
+WHERE teachers.name = "Mr. Ali";
+
+
+-- get all students of Mr ali
+-- inner join
+-- parameter -> in
+DELIMITER //
+CREATE PROCEDURE sp_getstudentbyteachername(IN t_name VARCHAR(100))
+BEGIN
+SELECT 
+students.name AS studentname,
+teachers.name AS teachername
+FROM students
+INNER JOIN teachers
+ON students.teacher_id = teachers.id
+WHERE teachers.name = t_name;
+END //
+DELIMITER ;
+
+
+CALL sp_getstudentbyteachername("Mr. Ali");
+CALL sp_getstudentbyteachername("Ms. Sara");
+
+
+-- get all students count by teacher id
+-- IN -> t_id
+-- OUT -> total_students
+
+SELECT 
+COUNT(*)
+FROM students
+WHERE students.teacher_id = 1;
+
+
+
+
+-- get all students count by teacher id
+-- IN -> t_id
+-- OUT -> total_students
+DELIMITER //
+CREATE PROCEDURE sp_getstudentcountbyteacher(IN t_id INT, OUT total_students INT )
+BEGIN
+SELECT 
+COUNT(*) INTO total_students
+FROM students
+WHERE students.teacher_id = t_id;
+END //
+DELIMITER ;
+
+CALL sp_getstudentcountbyteacher(1, @count);
+SELECT @count AS total_students
+
+
+
+CREATE DATABASE nayapaydb;
+
+USE nayapaydb;
+CREATE TABLE accounts(
+    id int primary KEY,
+    name varchar(50),
+    balance int
+);
+
+
+INSERT INTO accounts
+VALUES
+(1,"Ali",5000),
+(2,"Sara",3000);
+
+
+Transaction has two types
+1.Commit (Changes save)
+2.Rollback (Previous state)
+
+
+
+
+
+CREATE DATABASE temudb;
+USE temudb;
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    job_title VARCHAR(50),
+    salary DECIMAL(10,2),
+    department_id INT
+);
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY AUTO_INCREMENT,
+    department_name VARCHAR(50),
+    location VARCHAR(50)
+);
+
+
+INSERT INTO departments (department_name, location) VALUES
+('HR', 'New York'),
+('IT', 'California'),
+('Finance', 'New York'),
+('Sales', 'Texas');
+
+
+INSERT INTO employees (first_name, last_name, job_title, salary, department_id) VALUES
+('Ali', 'Khan', 'HR Manager', 80000, 1),
+('Sara', 'Ahmed', 'Recruiter', 50000, 1),
+('John', 'Smith', 'Software Engineer', 90000, 2),
+('Emma', 'Jones', 'System Analyst', 85000, 2),
+('David', 'Brown', 'Accountant', 60000, 3),
+('Sophia', 'Lee', 'Financial Analyst', 70000, 3),
+('Michael', 'Johnson', 'Sales Executive', 55000, 4),
+('Ayesha', 'Malik', 'Sales Manager', 75000, 4);
+
+USE temudb;
+SELECT * from employees;
+SELECT * from departments;
+
+
+
+USE temudb;
+
+-- find employees whose salary is higher than average salary
+SELECT AVG(salary) FROM employees;
+
+
+USE temudb;
+
+-- find employees whose salary is higher than average salary
+SELECT first_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+
+USE temudb;
+
+-- find employees who worked in department located in New York
+SELECT *
+FROM departments
+WHERE location = "New York";
+
+
+USE temudb;
+
+-- find employees who worked in department located in New York
+
+SELECT first_name 
+FROM employees 
+WHERE department_id IN(
+SELECT department_id
+FROM departments
+WHERE location = "New York");
+
+
+USE temudb;
+
+-- find employees who is earning more than the average salary in own department
+SELECT AVG(salary) AS HR FROM employees WHERE department_id = 1;
+SELECT AVG(salary) AS IT FROM employees WHERE department_id = 2;
+SELECT AVG(salary) AS Finance FROM employees WHERE department_id = 3;
+SELECT AVG(salary) AS Sales FROM employees WHERE department_id = 4;
+
+
+USE temudb;
+
+-- find employees who is earning more than the average salary in own department
+SELECT first_name ,salary
+FROM employees AS e 
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+    where department_id = e.department_id
+    );
+
